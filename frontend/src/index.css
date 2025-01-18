@@ -3,9 +3,28 @@
 @tailwind utilities;
 
 body {
-  background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('../public/image.png') ; 
+  background: linear-gradient(rgba(155, 153, 153, 0.2), rgba(26, 24, 24, 0.2)), url('../public/image.png') ; 
+  /* sbackground-image: url('../public//image.png'); */
   background-size:cover; 
   background-position: center;
   background-attachment: fixed;
   
+}
+
+.chats-container {
+  min-height: 680px;
+}
+
+.contacts {
+  max-height: 35rem;
+  min-height: 35rem;
+}
+
+.home {
+  max-width: 1300px;
+}
+
+.chats-container {
+  border-left: rgb(147 51 234 / var(--tw-border-opacity, 1)) 1px solid;
+  margin-left: 30px;
 }

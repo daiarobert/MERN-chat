@@ -20,6 +20,49 @@ const ChatList = () => {
             
             <img src='./plus.png' className='h-5 cursor-pointer'/>
         </div>
+       <div className="contacts overflow-y-scroll ">
+        <div className="item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600">
+                <img src="./avatar.png" alt="" className='h-14 rounded-full object-cover cursor-pointer'/>
+                <div className="texts"><span>User Name</span>
+                <p>Hello</p></div>
+            </div>
+        <div className="item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600">
+                <img src="./avatar.png" alt="" className='h-14 rounded-full object-cover cursor-pointer'/>
+                <div className="texts"><span>User Name</span>
+                <p>Hello</p></div>
+            </div>
+        <div className="item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600">
+                <img src="./avatar.png" alt="" className='h-14 rounded-full object-cover cursor-pointer'/>
+                <div className="texts"><span>User Name</span>
+                <p>Hello</p></div>
+            </div>
+        <div className="item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600">
+                <img src="./avatar.png" alt="" className='h-14 rounded-full object-cover cursor-pointer'/>
+                <div className="texts"><span>User Name</span>
+                <p>Hello</p></div>
+            </div>
+        <div className="item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600">
+                <img src="./avatar.png" alt="" className='h-14 rounded-full object-cover cursor-pointer'/>
+                <div className="texts"><span>User Name</span>
+                <p>Hello</p></div>
+            </div>
+        <div className="item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600">
+                <img src="./avatar.png" alt="" className='h-14 rounded-full object-cover cursor-pointer'/>
+                <div className="texts"><span>User Name</span>
+                <p>Hello</p></div>
+            </div>
+        <div className="item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600">
+                <img src="./avatar.png" alt="" className='h-14 rounded-full object-cover cursor-pointer'/>
+                <div className="texts"><span>User Name</span>
+                <p>Hello</p></div>
+            </div>
+        <div className="item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600">
+                <img src="./avatar.png" alt="" className='h-14 rounded-full object-cover cursor-pointer'/>
+                <div className="texts"><span>User Name</span>
+                <p>Hello</p></div>
+            </div>
+       </div>
+        
     </div>
   )
 }
