@@ -2,7 +2,7 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    fullName:{
+    fullname:{
         type: String,
         required: true,
     },
@@ -16,11 +16,11 @@ const userSchema = new mongoose.Schema({
         required: true,
         minLenght: 6,
     },
-    gender:{
-        type: String,
-        required: true,
-        enum: ["male", "female"]
-    },
+    // gender:{
+    //     type: String,
+    //     required: true,
+    //     enum: ["male", "female"]
+    // },
     profilePicture:{
         type: String,
         default: "",

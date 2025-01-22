@@ -16,7 +16,7 @@ export const login = async (req, res) => {
 
     res.status(200).json({
         id: user._id,
-        fullName: user.fullName,
+        fullname: user.fullname,
         username: user.username,
         profilePicture: user.profilePicture,
     })
@@ -43,7 +43,9 @@ export const logout = async (req, res) => {
 
 export const signup = async (req, res) => {
     try {
-        const {fullName, username, password,confirmPassword,gender} = req.body;
+        const {fullname, username, password,confirmPassword} = req.body;
+
+        console.log("Signup Request Body:", req.body);
 
         if(password !== confirmPassword) {
             return res.status(400).json({error:"Passwords don't match"})
@@ -59,15 +61,16 @@ export const signup = async (req, res) => {
         const hashedPassword = await bcryptjs.hash(password, salt)
 
 
-        const maleProfilepic = `https://avatar.iran.liara.run/public/boy?username=${username}`
-        const femaleProfilepic = `https://avatar.iran.liara.run/public/boy?username=${username}`
+        // Generate a random avatar URL
+        const avatarBaseURL = "https://api.dicebear.com/6.x/avataaars/svg";
+        const randomSeed = Math.random().toString(36).substring(2, 25);
+        const randomAvatar = `${avatarBaseURL}?seed=${randomSeed}`;
 
         const newUser = new User({
-            fullName,
+            fullname,
             username,
             password: hashedPassword,
-            gender,
-            profilePicture: gender === "male" ? maleProfilepic : femaleProfilepic
+            profilePicture: randomAvatar
         })
 
         if(newUser) {
@@ -76,7 +79,7 @@ export const signup = async (req, res) => {
 
             res.status(201).json({
                 _id: newUser._id, 
-                fullName: newUser.fullName,
+                fullname: newUser.fullname,
                 username: newUser.username, 
                 profilePicture: newUser.profilePicture
             })
@@ -88,5 +91,6 @@ export const signup = async (req, res) => {
 
     } catch (error) {
         res.status(500).json({error: "internal server error"})
+        console.log(error.message)
     }
 }

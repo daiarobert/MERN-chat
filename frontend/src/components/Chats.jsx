@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import EmojiPicker from 'emoji-picker-react'
+import Messages from './Messages'
 
 const Chats = () => {
 
@@ -42,6 +43,7 @@ const Chats = () => {
         </div>
 
         <div className="center p-5 flex-grow">
+            <Messages />
             
         </div>
 
