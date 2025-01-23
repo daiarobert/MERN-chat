@@ -7,6 +7,7 @@ const Chats = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [textInput, setTextInput] = useState("")
 
+
     const handleEmoji = e => {
         console.log(e)
         setTextInput((prev)=> prev + e.emoji)

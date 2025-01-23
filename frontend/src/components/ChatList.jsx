@@ -1,6 +1,22 @@
-import React from 'react'
+import {useState} from 'react'
+import useGetChats from '../utils/useGetChats'
+import useChats from '../store/useChats';
 
 const ChatList = () => {
+
+    const {selectedChat, setSelectedChat} = useChats();
+
+
+  const isSelected = (id) => {
+    setSelectedChat(id); // Set the selected chat ID
+    console.log("Chat ID clicked:", id);
+    // Perform other actions if needed
+  };
+
+    const {loading, chats} = useGetChats();
+
+    console.log(chats)
+
   return (
     <div className='ChatList'>
         <div className="search flex items-center justify-between mt-5 gap-5">
@@ -21,47 +37,49 @@ const ChatList = () => {
             <img src='./plus.png' className='h-5 cursor-pointer'/>
         </div>
        <div className="contacts overflow-y-scroll ">
-        <div className="item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600">
+       {loading ? (
+          <div className="flex items-center justify-center p-5">
+            <span className="loading loading-spinner loading-lg text-purple-600"></span>
+          </div>
+        ) : (
+          chats.map((chat) => (
+            <div
+              key={chat._id}
+              className={`item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600 ${
+                selectedChat === chat._id ? 'border-blue-600' : ''
+              }`}
+              onClick={() => isSelected(chat._id)}
+            >
+              <div className="w-14 h-14 flex items-center justify-center bg-gray-200 rounded-full overflow-hidden">
+                {loading ? (
+                  <span className="loading loading-spinner text-purple-600"></span>
+                ) : (
+                  <img
+                    src={chat.profilePicture}
+                    alt={`${chat.fullName}'s avatar`}
+                    className="h-full w-full object-cover"
+                  />
+                )}
+              </div>
+              <div className="texts">
+                <span>
+                  {loading ? (
+                    <div className="w-24 h-4 bg-gray-200 rounded animate-pulse"></div>
+                  ) : (
+                    chat.fullName || chat.fullname
+                  )}
+                </span>
+                <p>{loading ? "Loading..." : "Hello"}</p>
+              </div>
+            </div>
+          ))
+        )}
+        {/* <div className="item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600">
                 <img src="./avatar.png" alt="" className='h-14 rounded-full object-cover cursor-pointer'/>
                 <div className="texts"><span>User Name</span>
                 <p>Hello</p></div>
-            </div>
-        <div className="item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600">
-                <img src="./avatar.png" alt="" className='h-14 rounded-full object-cover cursor-pointer'/>
-                <div className="texts"><span>User Name</span>
-                <p>Hello</p></div>
-            </div>
-        <div className="item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600">
-                <img src="./avatar.png" alt="" className='h-14 rounded-full object-cover cursor-pointer'/>
-                <div className="texts"><span>User Name</span>
-                <p>Hello</p></div>
-            </div>
-        <div className="item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600">
-                <img src="./avatar.png" alt="" className='h-14 rounded-full object-cover cursor-pointer'/>
-                <div className="texts"><span>User Name</span>
-                <p>Hello</p></div>
-            </div>
-        <div className="item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600">
-                <img src="./avatar.png" alt="" className='h-14 rounded-full object-cover cursor-pointer'/>
-                <div className="texts"><span>User Name</span>
-                <p>Hello</p></div>
-            </div>
-        <div className="item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600">
-                <img src="./avatar.png" alt="" className='h-14 rounded-full object-cover cursor-pointer'/>
-                <div className="texts"><span>User Name</span>
-                <p>Hello</p></div>
-            </div>
-        <div className="item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600">
-                <img src="./avatar.png" alt="" className='h-14 rounded-full object-cover cursor-pointer'/>
-                <div className="texts"><span>User Name</span>
-                <p>Hello</p></div>
-            </div>
-        <div className="item flex items-center gap-5 p-5 pl-0 cursor-pointer border-b border-purple-600">
-                <img src="./avatar.png" alt="" className='h-14 rounded-full object-cover cursor-pointer'/>
-                <div className="texts"><span>User Name</span>
-                <p>Hello</p></div>
-            </div>
-       </div>
+            </div> */}
+        </div>
         
     </div>
   )
