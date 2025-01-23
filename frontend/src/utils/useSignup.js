@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 import { useAuthContext } from '../context/AuthContext';
+import axios from 'axios';
 
 const useSignup = () => {
     const [loading, setLoading] = useState(false);
@@ -10,14 +11,15 @@ const useSignup = () => {
         setLoading(true);
 
         try {
-            const res = await fetch("/api/auth/signup", {
-                method: "POST",
-                headers: {"content-type": "application/json"},
-                body: JSON.stringify({fullname, username, password, confirmPassword})
-            })
+            const res = await axios.post('/api/auth/signup', {
+                fullname,
+                username,
+                password,
+                confirmPassword,
+            });
 
-            const data = await res.json();
-            console.log(data)
+            const data = res.data;
+            console.log(data);
 
             if(data.error){
                 throw new Error(data.error)
@@ -25,6 +27,10 @@ const useSignup = () => {
 
             localStorage.setItem("logged-user", JSON.stringify(data))
             setAuthUser(data)
+
+            toast(`Welcome! ${data.username}`, {
+                icon: '👏',
+              });
 
         } catch (err) {
             toast.error(err.message)

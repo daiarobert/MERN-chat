@@ -1,11 +1,20 @@
 import React from 'react'
 import Form from '../../components/Form';
+import useLogin from '../../utils/useLogin';
 
 function Login() {
     const fields = [
-      { label: 'Username', type: 'text', placeholder: 'Enter Username' },
-      { label: 'Password', type: 'password', placeholder: 'Enter Password' },
+      { label: 'username', type: 'text', placeholder: 'Enter Username' },
+      { label: 'password', type: 'password', placeholder: 'Enter Password' },
     ];
+
+    const {loading, login} = useLogin()
+
+    const handleFormSubmit = async (formData) => {
+      console.log('Form Submitted from login:', formData);
+      await login(formData)
+      // Perform further actions, e.g., sending data to a server
+    };
   
     const extraActions = (
       <>
@@ -16,7 +25,7 @@ function Login() {
   
     return (
       <div className='flex flex-col items-center justify-center min-w-95 mx-auto'>
-        <Form title="Login" fields={fields} buttonText="Login" extraActions={extraActions} />
+        <Form title="Login" fields={fields} buttonText="Login" extraActions={extraActions} handleSubmit={handleFormSubmit}/>
       </div>
     );
   }

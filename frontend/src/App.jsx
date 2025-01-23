@@ -17,8 +17,8 @@ function App() {
      <div className='flex items-center justify-center h-screen p-4'>
      <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={authUser ? <Navigate to="/home" /> : <Login />} />
+        <Route path="/home" element={authUser ?  <Home /> : <Navigate to="/" /> } />
         <Route path="/signup" element={authUser ? <Navigate to="/home" /> : <SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
