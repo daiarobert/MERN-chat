@@ -1,19 +1,25 @@
-import React from 'react'
+import React from 'react';
 
-const UserInfo = () => {
+const UserInfo = ({ selectedChat }) => {
   return (
-    <div className='userInfo flex justify-between items-center'>
-        <div className='user flex items-center'>
-            <img src='./avatar.png' className='h-14 rounded-full object-cover cursor-pointer'/>
-            <h2 className='ml-3'>User Name</h2>
+    <div className="user-info p-5">
+      {selectedChat ? (
+        <div className="selected-chat-info flex items-center gap-5">
+          <img
+            src={selectedChat.profilePicture}
+            alt={`${selectedChat.fullName}'s avatar`}
+            className="h-14 w-14 rounded-full object-cover"
+          />
+          <div>
+            <h2 className="text-lg font-bold">{selectedChat.fullName}</h2>
+            <p className="text-sm text-gray-500">@{selectedChat.username}</p>
+          </div>
         </div>
-        <div className='icons flex h-5 gap-5'>
-            <img src='./more.png' className='cursor-pointer'></img>
-            <img src='./video.png' className='cursor-pointer'></img>
-            <img src='./edit.png' className='cursor-pointer'></img>
-        </div>
+      ) : (
+        <p className="text-gray-500">Select a chat to view user info</p>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default UserInfo
+export default UserInfo;
