@@ -26,11 +26,7 @@ const useSendMessage = () => {
         }
 
         localStorage.setItem("logged-user", JSON.stringify(data))
-        setMessages(data)
-
-        toast(`message sent!`, {
-            icon: '',
-          });
+        setMessages(data.message);
 
     } catch (err) {
         toast.error(err.message)
