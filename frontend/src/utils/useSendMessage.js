@@ -5,7 +5,7 @@ import useChats from '../store/useChats';
 
 const useSendMessage = () => {
   const [loading, setLoading] = useState(false);
-  const {selectedChat, message,setMessages} = useChats();
+  const {selectedChat, setMessages} = useChats();
 
   const sendMessage = async (message) => {
     setLoading(true);
@@ -25,7 +25,7 @@ const useSendMessage = () => {
             throw new Error(data.error)
         }
 
-        localStorage.setItem("logged-user", JSON.stringify(data))
+        //localStorage.setItem("logged-user", JSON.stringify(data))
         setMessages(data.message);
 
     } catch (err) {

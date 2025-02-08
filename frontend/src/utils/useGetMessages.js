@@ -34,8 +34,8 @@ const useGetMessages = () => {
       }
     };
 
-    getMessages(); // Call the function inside useEffect
-  }, [selectedChat, setMessages]); // Dependency on selectedChat and setMessages
+    if(selectedChat?._id) getMessages(); // Call the function inside useEffect
+  }, [selectedChat?._id, setMessages]); // Dependency on selectedChat and setMessages
 
   return { loading, messages };
 };
